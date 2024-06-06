@@ -21,7 +21,7 @@
             <td>ID</td>
             <td>Name</td>
             <td>Email</td>
-            <td>shark Level</td>
+            <td>Level</td>
             <td>Actions</td>
         </tr>
     </thead>

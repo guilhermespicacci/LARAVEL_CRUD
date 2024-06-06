@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shark;
+use App\Models\Level;
 class sharkController extends Controller
 {
     /**
@@ -13,8 +14,11 @@ class sharkController extends Controller
      */
     public function index()
     {
+       
         $sharks = Shark::all();
-        return view('sharks.index')->with('sharks',$sharks);
+        return view('sharks.index')
+        ->with('sharks',$sharks)
+        ;
     }
 
     /**
@@ -24,7 +28,8 @@ class sharkController extends Controller
      */
     public function create()
     {
-        return view('sharks.create');
+        $levels = Level::all();
+        return view('sharks.create')->with('levels',$levels);
     }
 
     /**
@@ -39,7 +44,7 @@ class sharkController extends Controller
         $validatedData = $request->validate([
             'name'=>'required|string',
             'email'=>'required|string|email:rfc,dns',
-            'shark_level'=> 'required|numeric',
+            'shark_level'=> 'required|string',
         ]);
         Shark::create($validatedData);
         return redirect()->route("sharks.index");

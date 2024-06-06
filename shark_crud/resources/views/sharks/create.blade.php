@@ -18,6 +18,9 @@
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
+            @if (!$levels->all() )
+                <li>There are no Levels for the Shark, Please create a Level in <a href="{{route("levels.create")}}">Create Your Shark Level</a></li>            
+            @endif
         </ul>
     </div>
 @endif
@@ -38,11 +41,10 @@
     <div class="form-group">
         <label for="shark_level">Shark Level</label>
         <select class="form-control" id="shark_level" name="shark_level">
-            <option value="0">Select a Level</option>
-            <option value="1" {{ old('shark_level') == '1' ? 'selected' : '' }}>Sees Sunlight</option>
-            <option value="2" {{ old('shark_level') == '2' ? 'selected' : '' }}>Foosball Fanatic</option>
-            <option value="3" {{ old('shark_level') == '3' ? 'selected' : '' }}>Basement Dweller</option>
-            <option value="4" {{ old('shark_level') == '4' ? 'selected' : '' }}>King of the Deep</option>
+            <option value="">Select a Level</option>
+            @foreach ($levels as $level )
+            <option value="{{$level->level}}">{{$level->level}}</option>
+            @endforeach
         </select>
     </div>
 

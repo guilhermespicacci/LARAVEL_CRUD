@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group">
-        <label for="number_level">Email</label>
+        <label for="number_level">Number Level</label>
         <input type="number" name="number_level" value="{{ $level->number_level }}" class="form-control">
     </div>
     <button type="submit" class="btn btn-primary">Edit the shark!</button>

@@ -19,7 +19,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Level</th>
-                    <th>Actions</th>
+                    <th>Level Number</th>
                 </tr>
             </thead>
             <tbody>
