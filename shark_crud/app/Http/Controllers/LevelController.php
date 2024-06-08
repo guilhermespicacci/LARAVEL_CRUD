@@ -16,6 +16,7 @@ class LevelController extends Controller
     public function index()
     {
         $levels = Level::all();
+        
         return view('levels.index')->with('levels',$levels);
     }
 
@@ -91,14 +92,14 @@ class LevelController extends Controller
    
         $validatedData =  $request->validate([
             "shark_level"=> 'required|string|max:255',
-            "number_level"=> 'required|string|max:255',
+            "foreign_id_level"=> 'required|string|max:255',
        ]);
 
            
         $level = Level::Find($id);
         
         $level->level = $validatedData["shark_level"];
-        $level->number_level = $validatedData["number_level"];
+        $level->foreign_id_level = $validatedData["foreign_id_level_level"];
         $level->save();
         return redirect()->route("levels.show",$id);
     

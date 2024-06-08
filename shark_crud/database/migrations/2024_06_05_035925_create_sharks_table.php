@@ -19,7 +19,7 @@ class CreateSharksTable extends Migration
 
             $table->string('name',255);
             $table->string('email',255);
-            $table->string('shark_level',255);
+            $table->integer('foreign_id_level');
 
             $table->timestamps();
         });

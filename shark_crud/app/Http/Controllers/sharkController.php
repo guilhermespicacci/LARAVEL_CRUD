@@ -16,9 +16,22 @@ class sharkController extends Controller
     {
        
         $sharks = Shark::all();
+        $idLevels = $sharks->pluck('foreign_id_level')->toArray();
+        $levels = Level::whereIn("number_level", $idLevels )->get();
+  
+       
+        
+      
+    foreach ($sharks as $shark) {
+        foreach ($levels as $level) {
+            if ($level->foreign_id_level == $shark->id_level) {
+                $shark->level_name = $level->level;
+                break;
+            }
+        }
+    };
         return view('sharks.index')
-        ->with('sharks',$sharks)
-        ;
+        ->with('sharks',$sharks);
     }
 
     /**
@@ -44,9 +57,13 @@ class sharkController extends Controller
         $validatedData = $request->validate([
             'name'=>'required|string',
             'email'=>'required|string|email:rfc,dns',
-            'shark_level'=> 'required|string',
+            'id_level'=> 'required|string',
         ]);
-        Shark::create($validatedData);
+        Shark::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'foreign_id_level' => $validatedData['id_level'],
+        ]);
         return redirect()->route("sharks.index");
     }
 
@@ -59,6 +76,10 @@ class sharkController extends Controller
     public function show($id)
     {
         $shark = Shark::find($id);
+        $foreign_key = $shark->foreign_id_level;
+        $level = Level::find($foreign_key);
+        $shark->level_name = $level->level;
+        
         if($shark === null){
             return redirect()->route('fallback');
         }
@@ -73,8 +94,12 @@ class sharkController extends Controller
      */
     public function edit($id)
     {
-          $shark = shark::find($id);
-          return view('sharks.edit')->with('shark',$shark);
+          $shark = Shark::find($id);
+          $levels = Level::all();
+        
+          return view('sharks.edit')
+          ->with('shark',$shark)
+          ->with('levels',$levels);
     }
 
     /**
@@ -94,7 +119,7 @@ class sharkController extends Controller
         $shark = shark::find($id);
         $shark->name = $validatedValues['name'];
         $shark->email = $validatedValues['email'];
-        $shark->shark_level = $validatedValues['shark_level'];
+        $shark->foreign_id_level = $validatedValues['shark_level'];
         $shark->save();
         return redirect(url("sharks/{$id}"));
     }

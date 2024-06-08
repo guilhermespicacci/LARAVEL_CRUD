@@ -11,7 +11,7 @@ class Shark extends Model
     protected $fillable = [
         'name',
         'email',
-        'shark_level'
+        'foreign_id_level',
     ];
     
 }

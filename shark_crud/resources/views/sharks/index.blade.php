@@ -9,7 +9,9 @@
     <x-shark-navbar></x-shark-navbar>
 
 <h1>All the sharks</h1>
+@php
 
+@endphp
 <!-- will be used to show any messages -->
 @if (session('message'))
     <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -26,13 +28,14 @@
         </tr>
     </thead>
     <tbody>
+
     @foreach($sharks as $shark)
 
         <tr>
             <td>{{ $shark->id }}</td>
             <td>{{ $shark->name }}</td>
             <td>{{ $shark->email }}</td>
-            <td>{{ $shark->shark_level }}</td>
+            <td>{{ $shark->level_name }}</td>
 
             <!-- we will also add show, edit, and delete buttons -->
             <td>

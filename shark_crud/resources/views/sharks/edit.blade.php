@@ -10,6 +10,11 @@
 
     <x-shark-navbar></x-shark-navbar>
 
+@php
+
+@endphp
+
+
 <h1>Edit {{ $shark->name }}</h1>
 
 <!-- if there are creation errors, they will show here -->
@@ -40,11 +45,14 @@
     <div class="form-group">
         <label for="shark_level">Shark Level</label>
         <select name="shark_level" class="form-control">
-            <option value="0">Select a Level</option>
-            <option value="1" {{ $shark->shark_level == 1 ? 'selected' : '' }}>Sees Sunlight</option>
-            <option value="2" {{ $shark->shark_level == 2 ? 'selected' : '' }}>Foosball Fanatic</option>
-            <option value="3" {{ $shark->shark_level == 3 ? 'selected' : '' }}>Basement Dweller</option>
-            <option value="4" {{ $shark->shark_level == 4 ? 'selected' : '' }}>King of the Deep</option>
+        @foreach ($levels as $level )
+            
+                     
+            <option value="{{$level->number_level}}" {{$level->id == 
+            $shark->foreign_id_level ? 'selected' : ''}}>
+            {{$level->level}}
+            </option>
+            @endforeach
         </select>
     </div>
 

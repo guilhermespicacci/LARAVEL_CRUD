@@ -40,10 +40,10 @@
 
     <div class="form-group">
         <label for="shark_level">Shark Level</label>
-        <select class="form-control" id="shark_level" name="shark_level">
+        <select class="form-control" id="id_level" name="id_level">
             <option value="">Select a Level</option>
             @foreach ($levels as $level )
-            <option value="{{$level->level}}">{{$level->level}}</option>
+            <option value="{{$level->number_level}}">{{$level->level}}</option>
             @endforeach
         </select>
     </div>

@@ -14,7 +14,7 @@
         <h2>{{ $shark->name }}</h2>
         <p>
             <strong>Email:</strong> {{ $shark->email }}<br>
-            <strong>Level:</strong> {{ $shark->shark_level }}
+            <strong>Level:</strong> {{ $shark->level_name }}
         </p>
     </div>
 

@@ -18,7 +18,7 @@ class CreateLevel extends Migration
         Schema::create('levels', function (Blueprint $table) {
             $table->id();
             $table->string('level');
-            $table->string('number_level');
+            $table->integer('number_level');
             $table->timestamps();
         });
     }
